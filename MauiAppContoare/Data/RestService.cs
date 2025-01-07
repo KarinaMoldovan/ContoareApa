@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using MauiAppContoare.Models;
-using MauiAppContoare.Data;
+using Newtonsoft.Json;
 
-namespace MauiAppContoare.Data
+namespace MauiAppContoare
 {
     public class RestService : IRestService
     {
@@ -13,16 +14,57 @@ namespace MauiAppContoare.Data
 
         public RestService()
         {
-            var handler = new HttpClientHandler
+            _httpClient = new HttpClient
             {
-                // Dezactivează verificarea certificatului pentru dezvoltare
-                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                BaseAddress = new Uri("http://localhost:5031/api/")
             };
+        }
 
-            _httpClient = new HttpClient(handler)
+        public async Task<List<Tarif>> GetTarifsAsync()
+        {
+            try
             {
-                BaseAddress = new Uri("http://localhost:5031/") // Setează URL-ul de bază
-            };
+                var response = await _httpClient.GetAsync("Tarifs");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Tarif>>(content) ?? new List<Tarif>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching data: {ex.Message}");
+            }
+
+            return new List<Tarif>();
+        }
+
+        public async Task<bool> AddTarifAsync(Tarif tarif)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("Tarifs", tarif);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding tarif: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteTarifAsync(int id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"Tarifs/{id}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting tarif: {ex.Message}");
+                return false;
+            }
         }
 
         public async Task<List<Factura>> RefreshDataAsync()
@@ -42,7 +84,5 @@ namespace MauiAppContoare.Data
                 throw; // Aruncă excepția pentru a fi gestionată la nivel superior
             }
         }
-
-
     }
 }

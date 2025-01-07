@@ -53,4 +53,15 @@ public partial class FacturaListPage : ContentPage
             // Navighează către o pagină de detalii dacă este necesar
         }
     }
+
+    // Handler pentru butonul Tarife
+    async void OnTarifeButtonClicked(object sender, EventArgs e)
+    {
+        // Obține instanța serviciului IRestService din DependencyService
+        var restService = DependencyService.Get<IRestService>();
+
+        // Navighează către pagina TarifePage și furnizează serviciul IRestService
+        var tarifePage = new TarifePage(restService);
+        await Navigation.PushAsync(tarifePage);
+    }
 }
