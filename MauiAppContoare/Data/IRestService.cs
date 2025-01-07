@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MauiAppContoare.Models;
 
-namespace MauiAppContoare.Data
+namespace MauiAppContoare
 {
     public interface IRestService
     {
-        Task<List<Factura>> RefreshDataAsync();
-        //Task SaveFacturaAsync(Factura factura, bool isNewItem);
-        //Task DeleteFacturaAsync(int facturaId);
-        //Task<Factura?> GetFacturaByIdAsync(int facturaId);
+        Task<List<Tarif>> GetTarifsAsync();
+        Task<bool> AddTarifAsync(Tarif tarif);
+        Task<bool> DeleteTarifAsync(int id);
+        Task<List<Factura>> RefreshDataAsync(); // TODO: Implement this method
     }
 }

@@ -15,10 +15,11 @@ namespace MauiAppContoare
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
+        #if DEBUG
     		builder.Logging.AddDebug();
-#endif
+        #endif
 
+            builder.Services.AddSingleton<IRestService, RestService>();
             return builder.Build();
         }
     }

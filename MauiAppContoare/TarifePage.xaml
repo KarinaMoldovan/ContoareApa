@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppContoare.TarifePage"
+             Title="Lista Tarife">
+    <VerticalStackLayout Padding="10">
+        <!-- Listă de tarife -->
+        <ListView x:Name="tarifeListView" ItemsSource="{Binding Tarife}" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding PretPeMetruCub}" FontSize="20" WidthRequest="100" />
+                            <Label Text="{Binding DataInceput, StringFormat='{0:dd/MM/yyyy}'}" WidthRequest="100" />
+                            <Label Text="{Binding DataSfarsit, StringFormat='{0:dd/MM/yyyy}'}" WidthRequest="100" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Formular pentru adăugarea unui tarif -->
+        <StackLayout Padding="10" Spacing="10">
+            <Entry x:Name="pretEntry" Placeholder="Preț pe metru cub" Keyboard="Numeric" />
+            <DatePicker x:Name="dataInceputPicker" />
+            <DatePicker x:Name="dataSfarsitPicker" />
+            <Button Text="Adaugă Tarif" Clicked="OnAddTarifClicked" />
+        </StackLayout>
+
+        <!-- Buton pentru ștergerea tarifelor selectate -->
+        <Button Text="Șterge Tarif Selectat" Clicked="OnDeleteTarifClicked" />
+    </VerticalStackLayout>
+</ContentPage>
