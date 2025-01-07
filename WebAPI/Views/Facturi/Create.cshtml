@@ -1,0 +1,46 @@
+﻿@model WebAPI.Models.Factura
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Factura</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataEmitere" class="control-label"></label>
+                <input asp-for="DataEmitere" class="form-control" />
+                <span asp-validation-for="DataEmitere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Suma" class="control-label"></label>
+                <input asp-for="Suma" class="form-control" />
+                <span asp-validation-for="Suma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContorId" class="control-label"></label>
+                <select asp-for="ContorId" class ="form-control" asp-items="ViewBag.ContorId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlataId" class="control-label"></label>
+                <select asp-for="PlataId" class ="form-control" asp-items="ViewBag.PlataId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

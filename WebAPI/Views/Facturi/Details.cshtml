@@ -1,0 +1,42 @@
+﻿@model WebAPI.Models.Factura
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataEmitere)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataEmitere)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Suma)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Suma)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Contor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Contor.NumarSerie)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Plata)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Plata.PlataId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.FacturaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
