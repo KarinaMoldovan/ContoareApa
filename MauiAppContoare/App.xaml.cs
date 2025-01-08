@@ -9,8 +9,7 @@ namespace MauiAppContoare
         {
             InitializeComponent();
 
-            //// Creează instanța de HttpClient și o transmite constructorului RestService
-            //var httpClient = new HttpClient();
+           
             Database = new FacturaDatabase(new RestService());
             DependencyService.Register<IRestService, RestService>();
 

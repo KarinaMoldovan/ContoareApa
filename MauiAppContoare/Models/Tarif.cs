@@ -22,7 +22,7 @@ namespace MauiAppContoare.Models
         [Required]
         public DateTime DataInceput { get; set; }
 
-        public DateTime? DataSfarsit { get; set; } // Optional, poate fi null pentru tariful curent
+        public DateTime? DataSfarsit { get; set; }
 
         public ICollection<Factura>? Facturi { get; set; }
     }

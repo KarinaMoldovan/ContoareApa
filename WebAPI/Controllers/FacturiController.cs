@@ -5,28 +5,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
 using WebAPI.Models;
-using Microsoft.Extensions.Logging; // Adaugă logger-ul
+
 
 namespace WebAPI.Controllers
 {
-    [ApiController] // Specifică faptul că este un API controller
-    [Route("api/[controller]")] // Definește ruta ca fiind /api/facturi
+    [ApiController] 
+    [Route("api/[controller]")] 
     public class FacturiController : ControllerBase
     {
         private readonly ProiectContoareContext _context;
-        private readonly ILogger<FacturiController> _logger; // Logger
+        //private readonly ILogger<FacturiController> _logger; 
 
         public FacturiController(ProiectContoareContext context, ILogger<FacturiController> logger)
         {
             _context = context;
-            _logger = logger;
+           // _logger = logger;
         }
 
         // GET: api/facturi
         [HttpGet]
         public async Task<ActionResult<List<Factura>>> GetFactura()
         {
-            _logger.LogInformation("Cerere GET pentru toate facturile a fost inițiată.");
+           // _logger.LogInformation("Cerere GET pentru toate facturile a fost inițiată.");
             try
             {
                 var facturi = await _context.Factura
@@ -36,16 +36,16 @@ namespace WebAPI.Controllers
 
                 if (facturi == null || !facturi.Any())
                 {
-                    _logger.LogWarning("Nu s-au găsit facturi în baza de date.");
+                  //  _logger.LogWarning("Nu s-au găsit facturi în baza de date.");
                     return NotFound("Nu există facturi.");
                 }
 
-                _logger.LogInformation($"S-au găsit {facturi.Count} facturi în baza de date.");
+                //_logger.LogInformation($"S-au găsit {facturi.Count} facturi în baza de date.");
                 return Ok(facturi);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "A apărut o eroare la preluarea facturilor.");
+                //_logger.LogError(ex, "A apărut o eroare la preluarea facturilor.");
                 return StatusCode(500, "A apărut o eroare internă. Vă rugăm să încercați din nou.");
             }
         }
@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Factura>> GetFactura(int id)
         {
-            _logger.LogInformation($"Cerere GET pentru factura cu ID-ul {id} a fost inițiată.");
+            //_logger.LogInformation($"Cerere GET pentru factura cu ID-ul {id} a fost inițiată.");
             try
             {
                 var factura = await _context.Factura
@@ -64,16 +64,16 @@ namespace WebAPI.Controllers
 
                 if (factura == null)
                 {
-                    _logger.LogWarning($"Factura cu ID-ul {id} nu a fost găsită.");
+                    //_logger.LogWarning($"Factura cu ID-ul {id} nu a fost găsită.");
                     return NotFound($"Factura cu ID-ul {id} nu există.");
                 }
 
-                _logger.LogInformation($"Factura cu ID-ul {id} a fost găsită.");
+               // _logger.LogInformation($"Factura cu ID-ul {id} a fost găsită.");
                 return factura;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"A apărut o eroare la preluarea facturii cu ID-ul {id}.");
+                //_logger.LogError(ex, $"A apărut o eroare la preluarea facturii cu ID-ul {id}.");
                 return StatusCode(500, "A apărut o eroare internă. Vă rugăm să încercați din nou.");
             }
         }
