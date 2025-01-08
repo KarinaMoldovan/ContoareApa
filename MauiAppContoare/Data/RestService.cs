@@ -143,5 +143,72 @@ namespace MauiAppContoare
                 return false;
             }
         }
+        public async Task<List<Contor>> GetContoareAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("contoare");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Contor>>(content) ?? new List<Contor>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching contoare: {ex.Message}");
+            }
+            return new List<Contor>();
+        }
+
+        public async Task<bool> AddContorAsync(Contor contor)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("contoare", contor);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding contor: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<Contor> UpdateContorAsync(Contor contor)
+        {
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"contoare/{contor.ContorId}", contor);
+                if (response.IsSuccessStatusCode)
+                {
+                    var updatedContor = await response.Content.ReadFromJsonAsync<Contor>();
+                    return updatedContor ?? contor; // Returnăm contorul actualizat sau cel original
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating contor: {ex.Message}");
+            }
+            return null; // Returnăm null în caz de eroare
+        }
+
+
+        public async Task DeleteContorAsync(int id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"contoare/{id}");
+                if (!response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Error deleting contor. Status Code: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting contor: {ex.Message}");
+            }
+        }
+
     }
 }

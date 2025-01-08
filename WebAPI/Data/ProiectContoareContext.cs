@@ -17,5 +17,6 @@ namespace WebAPI.Data
         public DbSet<WebAPI.Models.Factura> Factura { get; set; } = default!;
         public DbSet<WebAPI.Models.Tarif> Tarif { get; set; } = default!;
         public DbSet<WebAPI.Models.Consumator> Consumator { get; set; } = default!;
+        public DbSet<WebAPI.Models.Contor> Contor { get; set; } = default!;
     }
 }
