@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppContoare.ContoarePage"
+             Title="ContoarePage">
+    <StackLayout Padding="10">
+        <Label Text="Lista contoarelor" FontSize="20" HorizontalOptions="Center" />
+
+        <ListView x:Name="ContoareListView"
+                  ItemsSource="{Binding Contoare}"
+                  SelectedItem="{Binding SelectedContor}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding NumarSerie}" Detail="{Binding ValoareActuala}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Adaugă" Clicked="OnAddClicked" />
+            <Button Text="Editează" Clicked="OnEditClicked" />
+            <Button Text="Șterge" Clicked="OnDeleteClicked" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

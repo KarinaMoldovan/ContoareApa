@@ -28,7 +28,7 @@
                    FontSize="16" />
 
             <Button Text="Consumatori" Clicked="OnConsumatoriButtonClicked" HorizontalOptions="Center" />
-            <!--<Button Text="Contoare" Clicked="OnContoareButtonClicked" HorizontalOptions="Center" />  -->
+            <Button Text="Contoare" Clicked="OnContoareButtonClicked" HorizontalOptions="Center" /> 
             <Button Text="Tarife" Clicked="OnTarifeButtonClicked" HorizontalOptions="Center" />
         </StackLayout>
     </ScrollView>

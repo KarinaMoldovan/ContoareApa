@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebAPI.Models.Contor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumarSerie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValoareActuala)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consumator)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumarSerie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValoareActuala)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consumator.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -16,11 +16,11 @@ public partial class FacturaListPage : ContentPage
         await Navigation.PushAsync(consumatoriPage);
     }
 
-    //async void OnContoareButtonClicked(object sender, EventArgs e)
-    //{
-    //    var contoarePage = new ContorPage();
-    //    await Navigation.PushAsync(contoarePage);
-    //}
+    async void OnContoareButtonClicked(object sender, EventArgs e)
+    {
+        var contoarePage = new ContoarePage();
+        await Navigation.PushAsync(contoarePage);
+    }
 
     async void OnTarifeButtonClicked(object sender, EventArgs e)
     {

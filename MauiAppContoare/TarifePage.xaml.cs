@@ -1,5 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using MauiAppContoare.Models;
+using MauiAppContoare.Data;
+using System;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Graphics;
+
 
 namespace MauiAppContoare;
 
