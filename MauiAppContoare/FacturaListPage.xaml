@@ -2,24 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppContoare.FacturaListPage"
-             Title="Facturile Disponibile">
+             Title="Bun venit!">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <Label Text="Bun venit în aplicația de gestionare a contoarelor de apă!" 
+                   FontSize="24" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="StartAndExpand" />
 
-    
-    <StackLayout Padding="10">
-        <Label Text="{Binding Facturi.Count}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Start" />
+            <Image Source="contor.webp" 
+                   HorizontalOptions="Center" 
+                   HeightRequest="200" 
+                   WidthRequest="200" />
 
-        <Button Text="Consumatori" Clicked="OnConsumatoriButtonClicked" HorizontalOptions="Center" VerticalOptions="Start" />
+            <Label Text="Această aplicație vă permite să:" FontSize="18" />
+            <StackLayout Padding="10">
+                <Label Text="- Înregistrați consumul contoarelor de apă." />
+                <Label Text="- Generați facturi în funcție de consum." />
+                <Label Text="- Efectuați plăți pentru facturi." />
+                <Label Text="- Vizualizați tarifele pentru consumul de apă." />
+                <Label Text="- Gestionați contul dvs. ca și consumator." />
+            </StackLayout>
 
-        
-        <Button Text="Tarife" Clicked="OnTarifeButtonClicked" HorizontalOptions="Center" VerticalOptions="Start" />
+            <Label Text="Începeți prin a explora funcțiile aplicației și bucurați-vă de o experiență rapidă și ușoară de gestionare a consumului de apă!" 
+                   FontSize="16" />
 
-        
-        <ListView x:Name="facturaListView" ItemsSource="{Binding Facturi}" ItemSelected="OnFacturaSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Suma}" Detail="{Binding DataEmitere}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+            <Button Text="Consumatori" Clicked="OnConsumatoriButtonClicked" HorizontalOptions="Center" />
+            <!--<Button Text="Contoare" Clicked="OnContoareButtonClicked" HorizontalOptions="Center" />  -->
+            <Button Text="Tarife" Clicked="OnTarifeButtonClicked" HorizontalOptions="Center" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
