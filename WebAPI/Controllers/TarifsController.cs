@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Tarif>> PostTarif(Tarif tarif)
         {
-            // Găsește înregistrarea anterioară care nu are `DataSfarsit` setat
+            
             var previousTarif = await _context.Tarif
                 .Where(t => t.DataSfarsit == null)
                 .OrderByDescending(t => t.DataInceput)
@@ -49,15 +49,15 @@ namespace WebAPI.Controllers
 
             if (previousTarif != null)
             {
-                // Setează `DataSfarsit` ca fiind `DataInceput` al noului tarif
+                
                 previousTarif.DataSfarsit = tarif.DataInceput;
                 _context.Entry(previousTarif).State = EntityState.Modified;
             }
 
-            // Adaugă noul tarif
+            
             _context.Tarif.Add(tarif);
 
-            // Salvează modificările
+            
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetTarif), new { id = tarif.TarifId }, tarif);

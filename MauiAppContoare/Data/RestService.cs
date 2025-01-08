@@ -71,7 +71,7 @@ namespace MauiAppContoare
         {
             try
             {
-                var response = await _httpClient.GetAsync("api/facturi"); // Endpoint relativ
+                var response = await _httpClient.GetAsync("api/facturi"); 
                 if (response.IsSuccessStatusCode)
                 {
                     return await response.Content.ReadFromJsonAsync<List<Factura>>() ?? new List<Factura>();
@@ -81,7 +81,66 @@ namespace MauiAppContoare
             catch (Exception ex)
             {
                 Console.WriteLine($"Error fetching facturi: {ex.Message}");
-                throw; // Aruncă excepția pentru a fi gestionată la nivel superior
+                throw; 
+            }
+        }
+        public async Task<List<Consumator>> GetConsumatoriAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("consumatori");
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Consumator>>(content) ?? new List<Consumator>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching consumatori: {ex.Message}");
+            }
+            return new List<Consumator>();
+        }
+
+        public async Task<bool> AddConsumatorAsync(Consumator consumator)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("consumatori", consumator);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding consumator: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateConsumatorAsync(Consumator consumator)
+        {
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"consumatori/{consumator.ConsumatorId}", consumator);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating consumator: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteConsumatorAsync(int id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"consumatori/{id}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting consumator: {ex.Message}");
+                return false;
             }
         }
     }

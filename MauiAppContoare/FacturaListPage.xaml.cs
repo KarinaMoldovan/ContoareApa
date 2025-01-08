@@ -15,7 +15,7 @@ public partial class FacturaListPage : ContentPage
         Facturi = new ObservableCollection<Factura>();
         BindingContext = this;
 
-        // Inițializează HttpClient pentru REST API
+       
         _httpClient = new HttpClient
         {
             BaseAddress = new Uri("https://192.168.0.102:45455/api/")
@@ -28,7 +28,7 @@ public partial class FacturaListPage : ContentPage
 
         try
         {
-            // Apelează API-ul pentru a obține facturile
+            
             var facturi = await _httpClient.GetFromJsonAsync<List<Factura>>("facturi");
             if (facturi != null)
             {
@@ -47,20 +47,29 @@ public partial class FacturaListPage : ContentPage
     }
 
     async void OnFacturaSelected(object sender, SelectedItemChangedEventArgs e)
-    {
+    {//To do
         if (e.SelectedItem != null)
         {
-            // Navighează către o pagină de detalii dacă este necesar
+            //
         }
     }
-
-    // Handler pentru butonul Tarife
-    async void OnTarifeButtonClicked(object sender, EventArgs e)
+    async void OnConsumatoriButtonClicked(object sender, EventArgs e)
     {
-        // Obține instanța serviciului IRestService din DependencyService
+       
         var restService = DependencyService.Get<IRestService>();
 
-        // Navighează către pagina TarifePage și furnizează serviciul IRestService
+       
+        var consumatoriPage = new ConsumatorPage();
+        await Navigation.PushAsync(consumatoriPage);
+    }
+
+    
+    async void OnTarifeButtonClicked(object sender, EventArgs e)
+    {
+        
+        var restService = DependencyService.Get<IRestService>();
+
+       
         var tarifePage = new TarifePage(restService);
         await Navigation.PushAsync(tarifePage);
     }

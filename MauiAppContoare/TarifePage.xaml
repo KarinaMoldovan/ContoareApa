@@ -4,7 +4,7 @@
              x:Class="MauiAppContoare.TarifePage"
              Title="Lista Tarife">
     <VerticalStackLayout Padding="10">
-        <!-- Listă de tarife -->
+        
         <ListView x:Name="tarifeListView" ItemsSource="{Binding Tarife}" SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -18,14 +18,14 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Formular pentru adăugarea unui tarif -->
+       
         <StackLayout Padding="10" Spacing="10">
             <Entry x:Name="pretEntry" Placeholder="Preț pe metru cub" Keyboard="Numeric" />
             <DatePicker x:Name="dataInceputPicker" />
             <Button Text="Adaugă Tarif" Clicked="OnAddTarifClicked" />
         </StackLayout>
 
-        <!-- Buton pentru ștergerea tarifelor selectate -->
+        
         <Button Text="Șterge Tarif Selectat" Clicked="OnDeleteTarifClicked" />
     </VerticalStackLayout>
 </ContentPage>

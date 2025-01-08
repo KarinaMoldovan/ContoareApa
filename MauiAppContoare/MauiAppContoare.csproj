@@ -64,6 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="ConsumatorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="FacturaListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

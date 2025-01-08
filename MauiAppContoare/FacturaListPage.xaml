@@ -4,14 +4,16 @@
              x:Class="MauiAppContoare.FacturaListPage"
              Title="Facturile Disponibile">
 
-    <!-- Adăugăm un Label pentru a arăta numărul de facturi -->
+    
     <StackLayout Padding="10">
         <Label Text="{Binding Facturi.Count}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Start" />
 
-        <!-- Buton pentru navigarea către TarifePage -->
+        <Button Text="Consumatori" Clicked="OnConsumatoriButtonClicked" HorizontalOptions="Center" VerticalOptions="Start" />
+
+        
         <Button Text="Tarife" Clicked="OnTarifeButtonClicked" HorizontalOptions="Center" VerticalOptions="Start" />
 
-        <!-- ListView-ul cu facturi -->
+        
         <ListView x:Name="facturaListView" ItemsSource="{Binding Facturi}" ItemSelected="OnFacturaSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
