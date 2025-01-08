@@ -22,8 +22,6 @@ namespace WebAPI.Models
 
         [ForeignKey("ConsumatorId")]
         public Consumator? Consumator { get; set; }
-
-        [JsonIgnore]
         public ICollection<Factura>? Facturi { get; set; }
     }
 }
