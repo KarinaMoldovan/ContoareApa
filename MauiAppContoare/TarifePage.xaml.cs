@@ -47,8 +47,7 @@ public partial class TarifePage : ContentPage
                 var tarif = new Tarif
                 {
                     PretPeMetruCub = pret,
-                    DataInceput = dataInceputPicker.Date,
-                    DataSfarsit = dataSfarsitPicker.Date
+                    DataInceput = dataInceputPicker.Date
                 };
 
                 if (await _restService.AddTarifAsync(tarif))
@@ -71,6 +70,7 @@ public partial class TarifePage : ContentPage
             await DisplayAlert("Eroare", $"A apărut o problemă: {ex.Message}", "OK");
         }
     }
+
 
     private async void OnDeleteTarifClicked(object sender, EventArgs e)
     {
